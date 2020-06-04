@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: common
+
+  vars:
+    # EFS
+    mount_path: "/etc/airflow/dags"
+    filesystem_id: "{{ file_system_id }}"
+    aws_region: "{{ aws_region }}"

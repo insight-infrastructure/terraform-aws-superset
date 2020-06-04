@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "ansible/roles/ansible-role-superset": "https://github.com/insight-infrastructure/ansible-role-superset"
+  }
+}
