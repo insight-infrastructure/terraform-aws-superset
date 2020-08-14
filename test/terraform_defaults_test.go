@@ -95,7 +95,7 @@ func configureTerraformOptions(t *testing.T, exampleFolder string) (*terraform.O
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: exampleFolder,
-		OutputMaxLineSize: 1024 * 1024,
+		//OutputMaxLineSize: 1024 * 1024,
 
 		// Variables to pass to our Terraform code using -var options
 		Vars: map[string]interface{}{

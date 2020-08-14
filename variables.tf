@@ -8,7 +8,7 @@ variable "id" {
 variable "name" {
   description = "A unique name to give all the resources"
   type        = string
-  default     = "airflow"
+  default     = "superset"
 }
 
 variable "tags" {
@@ -23,15 +23,36 @@ variable "create_efs" {
   default     = true
 }
 
-######
-# Data
-######
-variable "eip_id" {
-  description = "The elastic ip id to attach to active instance"
+##########
+# Superset
+##########
+variable "superset_postgres_db_host" {
+  description = "The db host - blank for using defaults"
   type        = string
   default     = ""
 }
 
+variable "superset_postgres_db_name" {
+  description = "the db name"
+  type        = string
+  default     = "postgres"
+}
+
+variable "superset_postgres_db_user" {
+  description = "The db user"
+  type        = string
+  default     = "postgres"
+}
+
+variable "superset_postgres_db_pass" {
+  description = "The password"
+  type        = string
+  default     = "postgres"
+}
+
+######
+# Data
+######
 variable "vpc_id" {
   description = "The vpc to deploy into"
   type        = string
@@ -128,3 +149,4 @@ variable "backup_window" {
   type        = string
   default     = "03:00-06:00"
 }
+

@@ -32,26 +32,23 @@ resource "aws_instance" "this" {
   tags = var.tags
 }
 
-locals {
-  //  superset_postgres_db_host = var.create_rds ? module.db.
-}
-
 
 module "ansible" {
-  source           = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.8.0"
+  source           = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.12.0"
   ip               = aws_eip_association.this.public_ip
   user             = "ubuntu"
   private_key_path = var.private_key_path
 
   playbook_file_path = "${path.module}/ansible/main.yml"
   playbook_vars = merge({
-    //    superset_postgres_db_host = localhost
-    //    superset_postgres_db_port = 5432
-    //    superset_postgres_db_name = superset
-    //    superset_postgres_db_user = superset
-    //    superset_postgres_db_pass = changeme
-    enable_superset_local_postgres = true
+    superset_postgres_db_host = var.superset_postgres_db_host == "" ? module.db.this_db_instance_address : var.superset_postgres_db_host
+    superset_postgres_db_port = 5432
+    superset_postgres_db_name = var.superset_postgres_db_name
+    superset_postgres_db_user = var.superset_postgres_db_user
+    superset_postgres_db_pass = var.superset_postgres_db_pass
+    //    enable_superset_local_postgres = true
   }, var.playbook_vars)
 
   requirements_file_path = "${path.module}/ansible/requirements.yml"
 }
+

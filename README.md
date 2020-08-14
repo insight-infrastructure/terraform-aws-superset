@@ -39,13 +39,12 @@ No issue is creating limit on this module.
 |------|-------------|------|---------|:-----:|
 | backup\_window | The window to be backing up the db during | `string` | `"03:00-06:00"` | no |
 | create\_efs | Boolean to create EFS file system | `bool` | `true` | no |
-| eip\_id | The elastic ip id to attach to active instance | `string` | `""` | no |
 | id | The id to give to rds db, falls back to name | `string` | `""` | no |
 | instance\_class | instance class for DB | `string` | `"db.t3.small"` | no |
 | instance\_type | Instance type | `string` | `"t2.medium"` | no |
 | key\_name | The key pair to import | `string` | `""` | no |
 | maintenance\_window | The time to perform maintenance | `string` | `"Mon:00:00-Mon:03:00"` | no |
-| name | A unique name to give all the resources | `string` | `"airflow"` | no |
+| name | A unique name to give all the resources | `string` | `"superset"` | no |
 | password | The password to default user | `string` | `"changemenow"` | no |
 | playbook\_vars | Extra vars to include, can be hcl or json | `map(string)` | `{}` | no |
 | private\_key\_path | The path to the private ssh key | `string` | n/a | yes |
@@ -53,6 +52,10 @@ No issue is creating limit on this module.
 | rds\_public\_access | Bool to allow public access to rds | `string` | `true` | no |
 | root\_volume\_size | Root volume size | `string` | `8` | no |
 | subnet\_ids | The id of the subnet | `list(string)` | n/a | yes |
+| superset\_postgres\_db\_host | The db host - blank for using defaults | `string` | `""` | no |
+| superset\_postgres\_db\_name | the db name | `string` | `"postgres"` | no |
+| superset\_postgres\_db\_pass | The password | `string` | `"postgres"` | no |
+| superset\_postgres\_db\_user | The db user | `string` | `"postgres"` | no |
 | tags | Tags to attach to all resources | `map(string)` | `{}` | no |
 | username | Default username | `string` | `"icon"` | no |
 | vpc\_id | The vpc to deploy into | `string` | n/a | yes |
