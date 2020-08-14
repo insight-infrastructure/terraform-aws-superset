@@ -10,7 +10,8 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - stretch
-        - 
+        - all
+    - name: Ubuntu
+      versions:
+        - all
   galaxy_tags: []
-

@@ -5,4 +5,8 @@ roles:
   - src: geerlingguy.certbot
     version: 3.0.3
   - src: geerlingguy.postgresql
-  
+  - src: geerlingguy.nginx
+  - src: geerlingguy.nodejs
+  - src: cloudalchemy.node-exporter
+    version: 0.21.5
+    
