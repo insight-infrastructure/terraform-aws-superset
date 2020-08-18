@@ -7,28 +7,29 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-#    - common
-#    - geerlingguy.nodejs
-#
+    - common
+
 #    - role: geerlingguy.postgresql
 #      become: yes
 #      when: enable_superset_local_postgres | default(false) | bool
-#
-#    - role: cloudalchemy.node-exporter
-#      when: (node_exporter | default(false))
-#
-#    - role: geerlingguy.certbot
-#      become: yes
-#      certbot_create_if_missing: true
-#      certbot_admin_email: "webmaster@{{ superset_domain_name }}"
-#      certbot_certs:
-#        - domains:
-#            - "{{ superset_domain_name }}"
-#      certbot_create_standalone_stop_services: []
-#      when: (enable_superset_ssl | default(false))
-#
-#    - role: geerlingguy.nginx
-#      when: (enable_superset_ssl | default(false))
+
+    - role: cloudalchemy.node-exporter
+      when: (node_exporter | default(false))
+
+    - role: geerlingguy.certbot
+      become: yes
+      certbot_create_if_missing: true
+      certbot_admin_email: "{{ certbot_admin_email }}"
+      certbot_certs:
+        - domains:
+            - "{{ superset_domain_name }}"
+      certbot_create_standalone_stop_services: []
+      when: enable_superset_ssl
+
+    - role: geerlingguy.nginx
+      when: enable_superset_nginx
+
+    - role: geerlingguy.redis
     
 #    - insight_infra.ansible_role_superset
     - ansible-role-superset
@@ -37,26 +38,21 @@
     - name: Flush handlers in case any configs have changed.
       meta: flush_handlers
   
-#    - name: Test secure connection to SSL domain.
-#      uri:
-#        url: https://certbot-test.servercheck.in/
-#        status_code: 200
-#      delegate_to: localhost
-#      become: false
-#
-#    - name: Render superset conf.
-#      template:
-#        src: superset_config.py
-#        dest: /etc/superset/superset_config.py
-#        owner: root
-#        group: root
-#        mode: 0644
-#
-#    - name: Reload superset.
-#      service: name=superset state=reloaded
+    - name: Test secure connection to SSL domain.
+      uri:
+        url: https://certbot-test.servercheck.in/
+        status_code: 200
+      delegate_to: localhost
+      become: false
+      when:
+        - enable_superset_nginx
+        - enable_superset_ssl
 
   vars:
     nginx_vhost_template: nginx.conf
+  
+    enable_superset_nginx: false
+    enable_superset_ssl: false
     
     nodejs_npm_global_packages:
       - name: jslint
