@@ -4,7 +4,7 @@ locals {
 
 
 resource "aws_security_group" "rds" {
-  count       = 1
+  count       = var.create_rds ? 1 : 0
   name        = var.name
   description = "Security group for ${var.name} superset vm"
   vpc_id      = var.vpc_id
@@ -22,6 +22,7 @@ resource "aws_security_group" "rds" {
 }
 
 resource "aws_security_group_rule" "rds_pg" {
+  count             = var.create_rds ? 1 : 0
   type              = "ingress"
   from_port         = 5432
   to_port           = 5432
@@ -32,7 +33,7 @@ resource "aws_security_group_rule" "rds_pg" {
 }
 
 resource "aws_security_group_rule" "rds_public" {
-  count             = var.rds_public_access ? 1 : 0
+  count             = var.create_rds && var.rds_public_access ? 1 : 0
   type              = "ingress"
   from_port         = 5432
   to_port           = 5432
@@ -45,8 +46,12 @@ resource "aws_security_group_rule" "rds_public" {
 module "db" {
   source = "github.com/terraform-aws-modules/terraform-aws-rds?ref=master"
 
+  create_db_instance = var.create_rds
+
   identifier = local.id
-  name       = var.name
+  name       = var.superset_postgres_db_name
+  username   = var.superset_postgres_db_username
+  password   = var.superset_postgres_db_password
 
   engine               = "postgres"
   engine_version       = "9.6.9"
@@ -58,8 +63,6 @@ module "db" {
   allocated_storage = 5
   storage_encrypted = false
 
-  username = var.username
-  password = var.password
 
   port = "5432"
 

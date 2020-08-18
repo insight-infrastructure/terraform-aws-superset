@@ -38,7 +38,13 @@ No issue is creating limit on this module.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | backup\_window | The window to be backing up the db during | `string` | `"03:00-06:00"` | no |
-| create\_efs | Boolean to create EFS file system | `bool` | `true` | no |
+| create\_dns | Bool to create dns record | `bool` | `false` | no |
+| create\_rds | Boolean to create EFS file system | `bool` | `true` | no |
+| create\_superset | Bool to create superset | `bool` | `true` | no |
+| domain\_name | The domain name | `string` | `""` | no |
+| enable\_superset\_nginx | Bool to enable nginx | `bool` | `false` | no |
+| enable\_superset\_ssl | Bool to enable ssl cert - must activate enable\_superset\_nginx | `bool` | `false` | no |
+| hostname | The hostname - ie hostname.example.com | `string` | `""` | no |
 | id | The id to give to rds db, falls back to name | `string` | `""` | no |
 | instance\_class | instance class for DB | `string` | `"db.t3.small"` | no |
 | instance\_type | Instance type | `string` | `"t2.medium"` | no |
@@ -54,8 +60,8 @@ No issue is creating limit on this module.
 | subnet\_ids | The id of the subnet | `list(string)` | n/a | yes |
 | superset\_postgres\_db\_host | The db host - blank for using defaults | `string` | `""` | no |
 | superset\_postgres\_db\_name | the db name | `string` | `"postgres"` | no |
-| superset\_postgres\_db\_pass | The password | `string` | `"postgres"` | no |
-| superset\_postgres\_db\_user | The db user | `string` | `"postgres"` | no |
+| superset\_postgres\_db\_password | The password | `string` | `"postgres"` | no |
+| superset\_postgres\_db\_username | The db user | `string` | `"postgres"` | no |
 | tags | Tags to attach to all resources | `map(string)` | `{}` | no |
 | username | Default username | `string` | `"icon"` | no |
 | vpc\_id | The vpc to deploy into | `string` | n/a | yes |
@@ -65,9 +71,14 @@ No issue is creating limit on this module.
 
 | Name | Description |
 |------|-------------|
+| db\_instance\_address | n/a |
+| db\_instance\_endpoint | n/a |
+| db\_instance\_name | n/a |
+| db\_instance\_username | n/a |
 | instance\_id | The instance ID created |
 | key\_name | The key pair name created |
 | public\_ip | The public IP of the instance created |
+| rds\_security\_group | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

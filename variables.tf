@@ -17,7 +17,7 @@ variable "tags" {
   default     = {}
 }
 
-variable "create_efs" {
+variable "create_rds" {
   description = "Boolean to create EFS file system"
   type        = bool
   default     = true
@@ -26,6 +26,12 @@ variable "create_efs" {
 ##########
 # Superset
 ##########
+variable "create_superset" {
+  description = "Bool to create superset"
+  type        = bool
+  default     = true
+}
+
 variable "superset_postgres_db_host" {
   description = "The db host - blank for using defaults"
   type        = string
@@ -38,16 +44,28 @@ variable "superset_postgres_db_name" {
   default     = "postgres"
 }
 
-variable "superset_postgres_db_user" {
+variable "superset_postgres_db_username" {
   description = "The db user"
   type        = string
   default     = "postgres"
 }
 
-variable "superset_postgres_db_pass" {
+variable "superset_postgres_db_password" {
   description = "The password"
   type        = string
   default     = "postgres"
+}
+
+variable "enable_superset_nginx" {
+  description = "Bool to enable nginx"
+  type        = bool
+  default     = false
+}
+
+variable "enable_superset_ssl" {
+  description = "Bool to enable ssl cert - must activate enable_superset_nginx"
+  type        = bool
+  default     = false
 }
 
 ######
