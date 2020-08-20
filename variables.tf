@@ -68,6 +68,33 @@ variable "enable_superset_ssl" {
   default     = false
 }
 
+#####
+# DNS
+#####
+variable "create_dns" {
+  description = "Bool to create dns record"
+  type        = bool
+  default     = false
+}
+
+variable "domain_name" {
+  description = "The domain name"
+  type        = string
+  default     = ""
+}
+
+variable "hostname" {
+  description = "The hostname - ie hostname.example.com"
+  type        = string
+  default     = ""
+}
+
+variable "certbot_admin_email" {
+  description = "Admin email for SSL cert - must be in same domain"
+  type        = string
+  default     = ""
+}
+
 ######
 # Data
 ######
@@ -167,4 +194,3 @@ variable "backup_window" {
   type        = string
   default     = "03:00-06:00"
 }
-

@@ -38,6 +38,7 @@ No issue is creating limit on this module.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
 | backup\_window | The window to be backing up the db during | `string` | `"03:00-06:00"` | no |
+| certbot\_admin\_email | Admin email for SSL cert - must be in same domain | `string` | `""` | no |
 | create\_dns | Bool to create dns record | `bool` | `false` | no |
 | create\_rds | Boolean to create EFS file system | `bool` | `true` | no |
 | create\_superset | Bool to create superset | `bool` | `true` | no |

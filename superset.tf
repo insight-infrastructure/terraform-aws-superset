@@ -53,10 +53,18 @@ module "ansible" {
     superset_postgres_db_password = var.superset_postgres_db_password
 
     enable_superset_local_postgres = ! var.create_rds
-    enable_superset_nginx          = var.enable_superset_nginx
-    enable_superset_ssl            = var.enable_superset_ssl
+    enable_superset_nginx          = var.domain_name != "" && var.hostname != ""
+    enable_superset_ssl            = var.domain_name != "" && var.hostname != ""
+
+    fqdn = local.fqdn
+
+    certbot_admin_email = local.certbot_admin_email
   }, var.playbook_vars)
 
   requirements_file_path = "${path.module}/ansible/requirements.yml"
 }
 
+locals {
+  fqdn                = join(".", concat([var.hostname, var.domain_name]))
+  certbot_admin_email = var.certbot_admin_email == "" ? "admin@${var.domain_name}" : var.certbot_admin_email
+}
