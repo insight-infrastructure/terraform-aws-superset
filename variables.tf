@@ -47,7 +47,7 @@ variable "ssh_ips" {
 variable "open_ports" {
   description = "List of ports to open publicly"
   type        = list(string)
-  default     = ["80", "443", "22"]
+  default     = ["80", "443", "22", "8080"]
 }
 
 variable "additional_security_groups" {

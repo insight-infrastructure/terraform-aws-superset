@@ -55,7 +55,7 @@ No issue is creating limit on this module.
 | key\_name | The key pair to import | `string` | `""` | no |
 | maintenance\_window | The time to perform maintenance | `string` | `"Mon:00:00-Mon:03:00"` | no |
 | name | A unique name to give all the resources | `string` | `"superset"` | no |
-| open\_ports | List of ports to open publicly | `list(string)` | <pre>[<br>  "80",<br>  "443",<br>  "22"<br>]</pre> | no |
+| open\_ports | List of ports to open publicly | `list(string)` | <pre>[<br>  "80",<br>  "443",<br>  "22",<br>  "8080"<br>]</pre> | no |
 | password | The password to default user | `string` | `"changemenow"` | no |
 | playbook\_vars | Extra vars to include, can be hcl or json | `map(string)` | `{}` | no |
 | private\_key\_path | The path to the private ssh key | `string` | n/a | yes |
