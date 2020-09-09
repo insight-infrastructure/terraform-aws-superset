@@ -23,6 +23,33 @@ variable "create_rds" {
   default     = true
 }
 
+variable "create_security_group" {
+  description = "Bool to create security group"
+  type        = bool
+  default     = true
+}
+
+#####
+# SGs
+#####
+variable "ssh_ips" {
+  description = "IPv4 address list to res"
+  type        = list(string)
+  default     = null
+}
+
+variable "open_ports" {
+  description = "List of ports to open publicly"
+  type        = list(string)
+  default     = ["80", "443", "22"]
+}
+
+variable "additional_security_groups" {
+  description = "List of additional security groups"
+  type        = list(string)
+  default     = []
+}
+
 ##########
 # Superset
 ##########
@@ -111,6 +138,7 @@ variable "subnet_ids" {
 variable "vpc_security_group_ids" {
   description = "List of security groups"
   type        = list(string)
+  default     = []
 }
 
 #####

@@ -12,7 +12,7 @@
 
   roles:
     - common
-    - ansible-role-superset
+    - insight_infra.ansible_role_superset
 
   tasks:
 

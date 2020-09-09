@@ -37,10 +37,12 @@ No issue is creating limit on this module.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:-----:|
+| additional\_security\_groups | List of additional security groups | `list(string)` | `[]` | no |
 | backup\_window | The window to be backing up the db during | `string` | `"03:00-06:00"` | no |
 | certbot\_admin\_email | Admin email for SSL cert - must be in same domain | `string` | `""` | no |
 | create\_dns | Bool to create dns record | `bool` | `false` | no |
 | create\_rds | Boolean to create EFS file system | `bool` | `true` | no |
+| create\_security\_group | Bool to create security group | `bool` | `true` | no |
 | create\_superset | Bool to create superset | `bool` | `true` | no |
 | domain\_name | The domain name | `string` | `""` | no |
 | enable\_superset\_nginx | Bool to enable nginx | `bool` | `false` | no |
@@ -52,12 +54,14 @@ No issue is creating limit on this module.
 | key\_name | The key pair to import | `string` | `""` | no |
 | maintenance\_window | The time to perform maintenance | `string` | `"Mon:00:00-Mon:03:00"` | no |
 | name | A unique name to give all the resources | `string` | `"superset"` | no |
+| open\_ports | List of ports to open publicly | `list(string)` | <pre>[<br>  "80",<br>  "443",<br>  "22"<br>]</pre> | no |
 | password | The password to default user | `string` | `"changemenow"` | no |
 | playbook\_vars | Extra vars to include, can be hcl or json | `map(string)` | `{}` | no |
 | private\_key\_path | The path to the private ssh key | `string` | n/a | yes |
 | public\_key\_path | The path to the public ssh key | `string` | n/a | yes |
 | rds\_public\_access | Bool to allow public access to rds | `string` | `true` | no |
 | root\_volume\_size | Root volume size | `string` | `8` | no |
+| ssh\_ips | IPv4 address list to res | `list(string)` | n/a | yes |
 | subnet\_ids | The id of the subnet | `list(string)` | n/a | yes |
 | superset\_postgres\_db\_host | The db host - blank for using defaults | `string` | `""` | no |
 | superset\_postgres\_db\_name | the db name | `string` | `"postgres"` | no |
@@ -66,7 +70,7 @@ No issue is creating limit on this module.
 | tags | Tags to attach to all resources | `map(string)` | `{}` | no |
 | username | Default username | `string` | `"icon"` | no |
 | vpc\_id | The vpc to deploy into | `string` | n/a | yes |
-| vpc\_security\_group\_ids | List of security groups | `list(string)` | n/a | yes |
+| vpc\_security\_group\_ids | List of security groups | `list(string)` | `[]` | no |
 
 ## Outputs
 

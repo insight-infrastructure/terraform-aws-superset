@@ -45,11 +45,19 @@ resource "aws_security_group" "this" {
   }
 }
 
+resource "random_pet" "this" {
+  length = 2
+}
+
 module "defaults" {
   source = "../.."
 
-  private_key_path = var.private_key_path
-  public_key_path  = var.public_key_path
+  name = random_pet.this.id
+
+  private_key_path      = var.private_key_path
+  public_key_path       = var.public_key_path
+  create_security_group = false
+
 
   vpc_id                 = module.default_vpc.vpc_id
   subnet_ids             = module.default_vpc.subnet_ids
