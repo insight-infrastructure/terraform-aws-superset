@@ -40,6 +40,8 @@ module "ansible" {
   source = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.13.0"
   create = var.create_superset
 
+  force_create = var.force_create
+
   ip               = join("", aws_eip_association.this.*.public_ip)
   user             = "ubuntu"
   private_key_path = var.private_key_path

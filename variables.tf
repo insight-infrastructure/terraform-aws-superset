@@ -29,6 +29,12 @@ variable "create_security_group" {
   default     = true
 }
 
+variable "force_create" {
+  description = "Force rerun the ansible"
+  type        = bool
+  default     = false
+}
+
 #####
 # SGs
 #####

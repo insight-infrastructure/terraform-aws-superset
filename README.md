@@ -47,6 +47,7 @@ No issue is creating limit on this module.
 | domain\_name | The domain name | `string` | `""` | no |
 | enable\_superset\_nginx | Bool to enable nginx | `bool` | `false` | no |
 | enable\_superset\_ssl | Bool to enable ssl cert - must activate enable\_superset\_nginx | `bool` | `false` | no |
+| force\_create | Force rerun the ansible | `bool` | `false` | no |
 | hostname | The hostname - ie hostname.example.com | `string` | `""` | no |
 | id | The id to give to rds db, falls back to name | `string` | `""` | no |
 | instance\_class | instance class for DB | `string` | `"db.t3.small"` | no |
