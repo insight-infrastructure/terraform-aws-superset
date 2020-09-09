@@ -26,7 +26,7 @@ resource "aws_instance" "this" {
   instance_type = var.instance_type
 
   subnet_id              = var.subnet_ids[0]
-  vpc_security_group_ids = var.vpc_security_group_ids
+  vpc_security_group_ids = compact(concat([join("", aws_security_group.this.*.id)], var.additional_security_groups))
   key_name               = var.public_key_path == "" ? var.key_name : join("", aws_key_pair.this.*.key_name)
 
   root_block_device {
