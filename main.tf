@@ -37,7 +37,7 @@ resource "aws_instance" "this" {
 }
 
 module "ansible" {
-  source = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.12.0"
+  source = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.13.0"
   create = var.create_superset
 
   ip               = join("", aws_eip_association.this.*.public_ip)
