@@ -5,7 +5,16 @@
 
 ## Features
 
-This module deploys superset with an RDS DB.
+This module deploys superset with an RDS DB. It also configures a domain and sets up SSL and nginx.
+
+To run example module:
+```bash
+cd examples/defaults
+terraform apply 
+cd ../..
+make mount-efs
+cp dag_example.py dags/
+```
 
 ## Terraform Versions
 
@@ -13,12 +22,26 @@ For Terraform v0.12.0+
 
 ## Usage
 
-```
-module "this" {
-    source = "github.com/insight-infrastructure/terraform-aws-ec2-superset"
+See examples.
 
+```hcl
+module "defaults" {
+  source = "https://github.com/insight-infrastructure/terraform-aws-ec2-superset"
+
+  name = "superset"
+
+  domain_name = "example.com"
+  hostname    = "superset"
+
+  private_key_path      = var.private_key_path
+  public_key_path       = var.public_key_path
+  create_security_group = false
+
+  vpc_id                 = module.default_vpc.vpc_id
+  subnet_ids             = module.default_vpc.subnet_ids
 }
 ```
+
 ## Examples
 
 - [defaults](https://github.com/insight-infrastructure/terraform-aws-ec2-superset/tree/master/examples/defaults)
