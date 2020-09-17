@@ -54,6 +54,9 @@ module "ansible" {
     superset_postgres_db_username = var.superset_postgres_db_username
     superset_postgres_db_password = var.superset_postgres_db_password
 
+    superset_username = var.superset_username
+    superset_password = var.superset_password
+
     enable_superset_local_postgres = ! var.create_rds
     enable_superset_nginx          = var.domain_name != "" && var.hostname != ""
     enable_superset_ssl            = var.domain_name != "" && var.hostname != ""

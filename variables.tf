@@ -205,13 +205,13 @@ variable "instance_class" {
 //  type        = list(string)
 //}
 
-variable "username" {
+variable "superset_username" {
   description = "Default username"
   type        = string
   default     = "icon"
 }
 
-variable "password" {
+variable "superset_password" {
   description = "The password to default user"
   type        = string
   default     = "changemenow"

@@ -79,7 +79,6 @@ No issue is creating limit on this module.
 | maintenance\_window | The time to perform maintenance | `string` | `"Mon:00:00-Mon:03:00"` | no |
 | name | A unique name to give all the resources | `string` | `"superset"` | no |
 | open\_ports | List of ports to open publicly | `list(string)` | <pre>[<br>  "80",<br>  "443",<br>  "22",<br>  "8080"<br>]</pre> | no |
-| password | The password to default user | `string` | `"changemenow"` | no |
 | playbook\_vars | Extra vars to include, can be hcl or json | `map(string)` | `{}` | no |
 | private\_key\_path | The path to the private ssh key | `string` | n/a | yes |
 | public\_key\_path | The path to the public ssh key | `string` | n/a | yes |
@@ -87,12 +86,13 @@ No issue is creating limit on this module.
 | root\_volume\_size | Root volume size | `string` | `8` | no |
 | ssh\_ips | IPv4 address list to res | `list(string)` | n/a | yes |
 | subnet\_ids | The id of the subnet | `list(string)` | n/a | yes |
+| superset\_password | The password to default user | `string` | `"changemenow"` | no |
 | superset\_postgres\_db\_host | The db host - blank for using defaults | `string` | `""` | no |
 | superset\_postgres\_db\_name | the db name | `string` | `"postgres"` | no |
 | superset\_postgres\_db\_password | The password | `string` | `"postgres"` | no |
 | superset\_postgres\_db\_username | The db user | `string` | `"postgres"` | no |
+| superset\_username | Default username | `string` | `"icon"` | no |
 | tags | Tags to attach to all resources | `map(string)` | `{}` | no |
-| username | Default username | `string` | `"icon"` | no |
 | vpc\_id | The vpc to deploy into | `string` | n/a | yes |
 | vpc\_security\_group\_ids | List of security groups | `list(string)` | `[]` | no |
 
