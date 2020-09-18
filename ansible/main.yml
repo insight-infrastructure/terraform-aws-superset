@@ -12,6 +12,7 @@
 
   roles:
     - common
+    - weareinteractive.environment
     - insight_infra.ansible_role_superset
 
   tasks:
@@ -25,3 +26,7 @@
     postgresql_users:
       - name: "{{superset_postgres_db_user}}"
         password: "{{superset_postgres_db_pass}}"
+
+    environment_config:
+      LC_ALL: C.UTF-8
+      LANG: C.UTF-8

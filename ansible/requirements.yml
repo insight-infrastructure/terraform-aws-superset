@@ -6,3 +6,4 @@ roles:
   - src: geerlingguy.postgresql
   - src: geerlingguy.nginx
   - src: geerlingguy.redis
+  - src: weareinteractive.environment
