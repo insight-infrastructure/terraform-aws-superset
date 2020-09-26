@@ -37,7 +37,7 @@ resource "aws_instance" "this" {
 }
 
 module "ansible" {
-  source = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.13.0"
+  source = "github.com/insight-infrastructure/terraform-aws-ansible-playbook.git?ref=v0.14.0"
   create = var.create_superset
 
   force_create = var.force_create
